@@ -13,6 +13,7 @@
     <session id="1020771459">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -50,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="262">
+              <first_editor relative-caret-position="178">
                 <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="2" />
               </first_editor>
               <second_editor />
@@ -130,7 +131,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533731054572</updated>
-      <workItem from="1533731056164" duration="3479000" />
+      <workItem from="1533731056164" duration="4338000" />
     </task>
     <task id="LOCAL-00001" summary="Note">
       <created>1533736505679</created>
@@ -150,7 +151,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3479000" />
+    <option name="totallyTimeSpent" value="4338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -192,7 +193,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="262">
+          <first_editor relative-caret-position="178">
             <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="2" />
           </first_editor>
           <second_editor />
