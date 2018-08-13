@@ -1,4 +1,4 @@
-**首先说运行速度，或者说是执行速度，在这方面运行速度快慢为：StringBuilder > StringBuffer > String  
+首先说运行速度，或者说是执行速度，在这方面运行速度快慢为：StringBuilder > StringBuffer > String  
 
 　　**String最慢的原因：**
 
