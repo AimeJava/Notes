@@ -1,20 +1,26 @@
 # idea的使用 #
-
+**Alt-Enter**	万能补全
+**两个Shift** 搜索框
+**Ctrl + Alt + L** 格式化代码 （常用） 
+**Alt + Insert**自动生成某个类的 Getters, Setters, Constructors, hashCode/equals, toString 等代码。（常用）生成构造器，get / seter等  
 **Ctrl+Shift+Space** 在列出的可选项中只显示出你所输入的关键字最相关的信息。（常用）  
 **Ctrl + mouse** 跳进到某个类或者方法源代码中进行查看。（常用）  
-**Alt + Insert**自动生成某个类的 Getters, Setters, Constructors, hashCode/equals, toString 等代码。（常用）  
 **Ctrl + Alt + T**自动生成具有环绕性质的代码，比如：if..else,try..catch, for, synchronized 等等，**使用前要先选择好需要环绕的代码块。**（常用）
-
 **Ctrl + /**对单行代码，添加或删除注释。分为两种情况：如果只是光标停留在某行，那么连续使用该快捷键，会不断注释掉下一行的代码；如果选定了某行代码（选定了某行代码一部分也算这种情况），那么连续使用该快捷键，会在添加或删除该行注释之间来回切换。（常用）
-
 **Ctrl + Shift +/**对代码块，添加或删除注释。它与 Ctrl + / 的区别是，它只会在代码块的开头与结尾添加注释符号！（常用）  
 **Ctrl + W**	选中当前光标所在的代码块，多次触发，代码块会逐级变大。（常用）  
-**Ctrl + Alt + L** 格式化代码 （常用）  
 **Ctrl + Alt + O** 去除没有实际用到的包，这在 java 类中特别有用。（常用  
 **Ctrl + Alt + I**	按照缩进的设定，自动缩进所选择的代码段。  
 **Tab / Shift + Tab** 缩进或者不缩进一次所选择的代码段。（常用）  
-**Shift + F6**		修改名字。（常用）  
-**Ctrl + P** 显示 方法参数列表
+**Shift + F6**		修改名字。（常用）不单可以改项目、文件名 还包括代码名  
+**Ctrl + P** 显示 方法参数列表  
+
+
+  
+
+
+ 
+ 
   
 Ctrl + X 或 Shift Delete	Cut current line or selected block to clipboard	剪切当前代码。 （常用）  
 Ctrl + C 或 Ctrl + Insert	Copy current line or selected block to clipboard	拷贝当前代码。 （常用）  
