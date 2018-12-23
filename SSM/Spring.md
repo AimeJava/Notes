@@ -117,25 +117,147 @@ Spring websocket：提供 Socket通信， web端的推送功能
 
 #### 注解的方式  ####
 
-**@Configuration：**用于定义配置类，可替换xml配置文件，被注解的类内部包含有一个或多个被@Bean注解的方法，这些方法将会被AnnotationConfigApplicationContext或AnnotationConfigWebApplicationContext类进行扫描，并用于构建bean定义，初始化Spring容器。可理解为用spring的时候xml里面的<beans>标签
-**@Bean：**可理解为用spring的时候xml里面的<bean>标签
-**@ComponentScan：**("包名")
-**@ImportResource：**（"要引入的XML"）
+**@Configuration：**用于定义配置类，可替换xml配置文件，被注解的类内部包含有一个或多个被@Bean注解的方法，这些方法将会被AnnotationConfigApplicationContext或AnnotationConfigWebApplicationContext类进行扫描，并用于构建bean定义，初始化Spring容器。可理解为用spring的时候xml里面的beans标签
+**@Bean：**可理解为用spring的时候xml里面的bean标签
+**@ComponentScan：**包名
+**@ImportResource：**要引入的XML
 **@Autowired ：**它可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作。 通过 @Autowired的使用来消除 set ，get方法。
 **@PropertySource：**注解加载指定的属性文件
 	
-
-
-## AOP ##
-代理
-
-不推荐用继承
-	
-组合优于继承
-
-
 **注意事项：**
 @Autowired一定要等本类构造完成后，才能从外部引用设置进来。所以@Autowired的注入时间一定会晚于构造函数的执行时间。但在初始化变量的时候就使用了还没注入的bean，所以导致了NPE。若果在初始化其它变量时不使用这个要注入的bean，而是在以后的方法调用的时候去赋值，是可以使用这个bean的，因为那时类已初始化好，即已注入好了。
+
+## AOP ##
+主要实现：功能分离
+
+**1. 静态代理**
+> 使用接口实现
+    
+	public interface Sing {
+		void start();
+	}
+>创建被代理类
+	
+    public class Singer implements Sing{
+    	public void start(){
+    		System.out.println("唱一首歌");
+    	}
+    }
+
+>中间代理层
+
+    public class ProxyEmcee implements Sing{
+    	private final Sing sing;
+    	public ProxyEmcee(Sing s){
+    		this.sing = s;
+    	}
+    	public void start(){
+    		System.out.println("有请这位歌手演唱");
+    		sing.start();
+    		System.out.println("有请下一位歌手");
+    	}
+    }
+>测试
+
+    public class Main {
+    	public static void main(String[] args) {
+    		Sing s = new ProxyEmcee(new Singer());
+    		s.start();
+    	}
+    }
+
+
+**2. 动态代理(JDK)** 继承InvocationHandler接口
+> 使用接口实现
+ 
+	public interface Sing {
+		void start();
+	}
+>创建被代理类
+	
+    public class Singer implements Sing{
+    		public void start(){
+    			System.out.println("唱一首歌");
+		}
+    }
+>中间代理层（继承InvocationHandler接口）
+
+    public class ProxyEmcee implements InvocationHandler{
+        private final Object o;
+
+    public ProxyEmcee(Object o) {
+        this.o = o;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+      		System.out.println("有请这位歌手演唱");
+    		Object o = method.invoke(o, args);
+    		System.out.println("有请下一位歌手")；
+    		return o;
+	}
+    }
+
+
+>测试
+
+    public class Main {
+    	public static void main(String[] args) {
+    
+    		Sing s = (Sing) Proxy.newProxyInstance(
+    			Singer.class.getClassLoader(),new Class[]{Sing.class},
+    			new ProxyEmcee(new Singer())
+    		);
+    		s.start();
+    	}
+    }
+第一个参数：ClassLoader loader：它是类加载器类型
+
+第二个参数：Class[] interfaces：指定newProxyInstance()方法返回的对象要实现哪些接口，没错，可以指定多个接口
+
+第三个参数：handler主要就是对方法增加内容
+
+**3. Cglib代理** （不需要接口）
+
+>创建被代理类
+	
+    public class Singer {
+    		public void start(){
+    			System.out.println("唱一首歌");
+		}
+    }
+>中间代理层（继承MethodInterceptor接口）
+    
+	public class CGRecordProxyGenerator implements MethodInterceptor {
+    	@Override
+    	public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+    		System.out.println("有请这位歌手演唱");
+    		Object res = methodProxy.invokeSuper(o, args);
+    		System.out.println("有请下一位歌手")； 
+    		return res;
+    	}
+    }
+
+
+>测试
+
+    public class Main {
+    	public static void main(String[] args) {
+    		Singer o = (Singer) Enhancer.create(Singer.class, null, new ProxyEmcee());
+    		o.start();
+    	}
+    }
+
+
+
+使用xml
+
+使用注解
+**@Aspect:**
+
+**@Before("execution(*.*.*.*(..))"):**
+
+
 
 
 题外学习：
